@@ -9,4 +9,22 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ChurchApp::Application.config.secret_key_base = 'c8d850d2f3bbd2ae570e97d9271c9bf46009d0979629d7f124e2d6bfd5456fb55b2ba5bdefcde878409b1a1eff4dd280e539ca240008b0dd21f4b4f7b1c515d8'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+ChurchApp::Application.config.secret_key_base = secure_token
+
+#'c8d850d2f3bbd2ae570e97d9271c9bf46009d0979629d7f124e2d6bfd5456fb55b2ba5bdefcde878409b1a1eff4dd280e539ca240008b0dd21f4b4f7b1c515d8'
