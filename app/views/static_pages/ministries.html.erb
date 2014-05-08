@@ -1,2 +1,22 @@
-<h1>StaticPages#ministries</h1>
-<p>Find me in app/views/static_pages/ministries.html.erb</p>
+<% provide(:title, 'Ministries') %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Client Church | <%= yield(:title) %></title>
+  </head>
+  <body>
+<h1>Ministries in the Church</h1>
+<p>
+  Ministries in 
+  <a href="http://radianscientific.co.uk/">Client Church</a>
+  
+</p>
+<ul>
+  <li> Choir </li>
+  <li> Usher </li>
+   <li> Drama </li>
+   <li> Prayer </li>
+</ul>
+
+</body>
+</html>
